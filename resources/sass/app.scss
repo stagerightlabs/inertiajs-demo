@@ -1,12 +1,33 @@
 @tailwind base;
 
+@tailwind components;
+
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
 @import 'variables';
 
+// Utilities
+@import 'utilities';
 
-@tailwind components;
+// Forms
+@import 'forms';
+
+// Buttons
+@import 'buttons';
+
+
+h1 {
+    @apply text-3xl;
+}
+
+h2 {
+    @apply text-2xl;
+}
+
+h3 {
+    @apply text-xl;
+}
 
 @tailwind utilities;

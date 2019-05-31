@@ -1,0 +1,13 @@
+.center-xy {
+  @apply inset-0 mx-auto h-screen flex flex-col justify-center items-center;
+  z-index: 25;
+  width: 100%;
+}
+
+.billboard {
+  @apply bg-white rounded w-full overflow-hidden shadow-lg mx-10 px-8 py-6 text-left text-gray-900;
+
+  @screen md {
+    @apply w-128 ;
+  }
+}

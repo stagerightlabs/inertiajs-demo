@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="center-xy">
     <header>
       <inertia-link href="/">Home</inertia-link>
       <inertia-link href="/about">About</inertia-link>
