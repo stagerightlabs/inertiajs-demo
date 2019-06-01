@@ -2,21 +2,9 @@
 
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome');
-});
-
-// Route::get('/about', function () {
-//     return Inertia::render('About');
-// });
-
-// Route::get('/contact', function () {
-//     return Inertia::render('Contact');
-// });
-
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('login', 'Auth\LoginController@login');
+Route::post('login', 'Auth\LoginController@login')->name('login.attempt');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 // Registration Routes...
@@ -35,3 +23,9 @@ if ($options['verify'] ?? false) {
 
 Route::get('home', 'HomeController@index')->name('home');
 
+Route::get('/', function () {
+    if (Auth::user()) {
+        return redirect()->route('home');
+    }
+    return Inertia::render('Welcome');
+});
