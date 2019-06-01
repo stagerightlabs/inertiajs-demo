@@ -21,4 +21,4 @@ mix
     },
   })
   .version()
-  .disableSuccessNotifications();
+  .disableNotifications();

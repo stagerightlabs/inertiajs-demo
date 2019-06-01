@@ -22,7 +22,7 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 // Registration Routes...
 if ($options['register'] ?? true) {
     Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-    Route::post('register', 'Auth\RegisterController@register');
+    Route::post('register', 'Auth\RegisterController@register')->name('register.attempt');
 }
 // Password Reset Routes...
 if ($options['reset'] ?? true) {

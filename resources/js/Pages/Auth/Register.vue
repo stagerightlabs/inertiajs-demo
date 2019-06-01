@@ -1,44 +1,104 @@
 <template>
-  <billboard-layout>
-    <h1 class="text-center">Register</h1>
-      <form>
+  <centered>
+    <form @submit.prevent="submit">
+      <header>
+        <h2>Create a New Account</h2>
+      </header>
+      <section>
         <div class="mb-4">
           <label for="name">
             Name
           </label>
-          <input id="username" type="text" placeholder="Name">
+          <input
+            id="name"
+            type="text"
+            v-model="form.name"
+            :class="error('name') ? 'error' : ''"
+          >
+          <p v-if="error('name')" class="text-red-500 text-sm">{{ error('name') }}</p>
         </div>
         <div class="mb-4">
-          <label for="name">
+          <label for="email">
             E-mail
           </label>
-          <input id="username" type="email" placeholder="E-Mail">
+          <input
+            id="email"
+            type="email"
+            v-model="form.email"
+            :class="error('email') ? 'error' : ''"
+          >
+          <p v-if="error('email')" class="text-red-500 text-sm">{{ error('email') }}</p>
         </div>
         <div class="mb-6">
           <label for="password">
             Password
           </label>
-          <input id="password" type="password" placeholder="******************">
-          <!-- <p class="text-red-500 text-xs italic">Please choose a password.</p> -->
+          <input
+            id="password"
+            type="password"
+            v-model="form.password"
+            :class="error('password') ? 'error' : ''"
+          >
+          <p v-if="error('password')" class="text-red-500 text-sm">{{ error('password') }}</p>
         </div>
-        <div class="flex items-center justify-between">
-          <button type="button">
-            Sign In
+        <div class="mb-6">
+          <label for="password">
+            Confirm Password
+          </label>
+          <input
+            id="password"
+            type="password"
+            v-model="form.passwordConfirmation"
+            :class="error('password_confirmation') ? 'error' : ''"
+          >
+          <p v-if="error('password_confirmation')" class="text-red-500 text-sm">{{ error('password_confirmation') }}</p>
+        </div>
+      </section>
+      <footer>
+        <div class="flex items-center justify-end">
+          <button type="button" class="gray" :disabled="sending" @click="submit">
+            Register
           </button>
-          <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
-            Forgot Password?
-          </a>
         </div>
-      </form>
-  </billboard-layout>
+      </footer>
+    </form>
+  </centered>
 </template>
 
 <script>
-import BillboardLayout from '@/Shared/BillboardLayout'
+import CenteredLayout from '@/Shared/CenteredLayout';
+import { validation } from '@/Shared/Validation';
 
 export default {
+  mixins: [validation],
   components: {
-    BillboardLayout,
+    centered: CenteredLayout,
   },
+  data() {
+    return {
+      sending: false,
+      form: {
+        name: '',
+        email: '',
+        password: '',
+        passwordConfirmation: '',
+      }
+    }
+  },
+  methods: {
+    submit() {
+        this.sending = true
+        this.$inertia.post(this.route('register.attempt'), {
+          name: this.form.name,
+          email: this.form.email,
+          password: this.form.password,
+          password_confirmation: this.form.passwordConfirmation,
+        })
+        .then((response) => {
+          this.sending = false
+          console.log(response)
+        })
+    },
+  }
 }
 </script>
