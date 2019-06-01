@@ -32,3 +32,6 @@ if ($options['reset'] ?? true) {
 if ($options['verify'] ?? false) {
     Route::emailVerification();
 }
+
+Route::get('home', 'HomeController@index')->name('home');
+

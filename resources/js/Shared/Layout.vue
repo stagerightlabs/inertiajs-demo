@@ -1,13 +1,33 @@
 <template>
-  <main class="center-xy">
+  <main>
     <header>
-      <inertia-link href="/">Home</inertia-link>
-      <inertia-link href="/about">About</inertia-link>
-      <inertia-link href="/contact">Contact</inertia-link>
+      <nav>
+        <inertia-link href="/">
+          <h2 class="inline">
+            {{ $page.app.name }}
+          </h2>
+        </inertia-link>
+        <inertia-link href="/about">About</inertia-link>
+        <inertia-link href="/contact">Contact</inertia-link>
+      </nav>
+      <aside>
+        {{ $page.auth.user.email }}
+        <a @click="logout">Logout</a>
+      </aside>
     </header>
 
-    <article>
+    <article class="container mx-auto pt-8">
       <slot />
     </article>
   </main>
 </template>
+
+<script>
+export default {
+  methods: {
+    logout() {
+       this.$inertia.post(this.route('logout'))
+    }
+  }
+}
+</script>
