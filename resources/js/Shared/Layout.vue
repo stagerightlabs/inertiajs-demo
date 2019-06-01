@@ -12,7 +12,7 @@
       </nav>
       <aside>
         {{ $page.auth.user.email }}
-        <a @click="logout">Logout</a>
+        <a @click="logout" class="cursor-pointer">Logout</a>
       </aside>
     </header>
 
