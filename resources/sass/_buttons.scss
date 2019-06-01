@@ -1,11 +1,44 @@
 button {
-  @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
+  @apply  text-white font-bold py-2 px-4 rounded;
 
-  &:hover {
-    @apply bg-blue-700;
-  }
 
   &:focus {
     @apply outline-none shadow-outline;
+  }
+
+  &.blue {
+    @apply bg-blue-500;
+
+    &:hover {
+      @apply bg-blue-700;
+    }
+
+    &:disabled,
+    &[disabled]{
+      @apply opacity-50 cursor-not-allowed;
+
+      &:hover {
+        @apply bg-blue-500;
+      }
+
+    }
+  }
+
+  &.gray {
+    @apply bg-gray-600;
+
+    &:hover {
+      @apply bg-gray-700
+    }
+
+    &:disabled,
+    &[disabled]{
+      @apply bg-gray-500 opacity-50 cursor-not-allowed;
+
+      &:hover {
+        @apply bg-gray-500;
+      }
+
+    }
   }
 }

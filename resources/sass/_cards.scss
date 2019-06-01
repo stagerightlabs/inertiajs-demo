@@ -1,0 +1,15 @@
+.card {
+  @apply bg-white rounded w-full overflow-hidden shadow-lg mx-10 text-left text-gray-900;
+
+  header {
+    @apply bg-gray-500  px-4 py-3 text-gray-100 text-left;
+  }
+
+  section {
+    @apply px-8 py-4;
+  }
+
+  footer {
+    @apply bg-gray-100 px-4 py-4 rounded-b;
+  }
+}
