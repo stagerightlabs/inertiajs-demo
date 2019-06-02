@@ -19,7 +19,7 @@
             v-model="form.email"
             :class="error('email') ? 'error' : ''"
           >
-          <p v-if="error('email')" class="text-red-500 text-sm">{{ error('email') }}</p>
+          <p v-if="error('email')" class="error-message">{{ error('email') }}</p>
         </div>
       </section>
       <footer v-if="!status">

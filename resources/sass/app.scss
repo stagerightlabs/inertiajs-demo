@@ -35,4 +35,8 @@ h3 {
     @apply text-xl;
 }
 
+a {
+    @apply border-b border-dashed border-gray-600;
+}
+
 @tailwind utilities;

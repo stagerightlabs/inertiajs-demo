@@ -6,11 +6,16 @@ input[type="text"], input[type="email"], input[type="password"] {
     }
 
     &.error {
-        @apply border border-red-500;
+        @apply border border-gray-800;
     }
 }
 
 
 label {
     @apply block text-gray-700 text-sm font-bold mb-2;
+}
+
+
+.error-message {
+    @apply text-gray-700 text-sm;
 }
