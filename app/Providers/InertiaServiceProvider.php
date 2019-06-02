@@ -40,6 +40,7 @@ class InertiaServiceProvider extends ServiceProvider
                     'user' => Auth::user() ? [
                         'name' => Auth::user()->name,
                         'email' => Auth::user()->email,
+                        'verified' => optional(Auth::user()->email_verified_at)->toAtomString(),
                     ] : null,
                 ],
                 'flash' => [

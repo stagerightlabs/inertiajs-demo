@@ -18,10 +18,11 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
 // Email Verification Routes...
-if ($options['verify'] ?? false) {
-    Route::emailVerification();
-}
+// Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
+Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
+Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 
+// Dashboard
 Route::get('home', 'HomeController@index')->name('home');
 
 Route::get('/', function () {

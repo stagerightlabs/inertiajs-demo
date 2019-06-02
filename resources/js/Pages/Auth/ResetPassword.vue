@@ -41,6 +41,7 @@
             type="password"
             v-model="form.passwordConfirmation"
             :class="error('password_confirmation') ? 'error' : ''"
+            @keydown.enter.prevent="submit"
           >
           <p v-if="error('password_confirmation')" class="text-red-500 text-sm">{{ error('password_confirmation') }}</p>
         </div>
@@ -87,16 +88,16 @@ export default {
   },
   methods: {
     submit() {
-        this.sending = true
-        this.$inertia.post(this.route('password.update'), {
-          token: this.token,
-          email: this.form.email,
-          password: this.form.password,
-          password_confirmation: this.form.passwordConfirmation,
-        })
-        .then((response) => {
-          this.sending = false;
-        })
+      this.sending = true
+      this.$inertia.post(this.route('password.update'), {
+        token: this.token,
+        email: this.form.email,
+        password: this.form.password,
+        password_confirmation: this.form.passwordConfirmation,
+      })
+      .then((response) => {
+        this.sending = false;
+      })
     },
   },
   mounted() {

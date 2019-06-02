@@ -18,6 +18,7 @@
             type="email"
             v-model="form.email"
             :class="error('email') ? 'error' : ''"
+            @keydown.enter.prevent="submit"
           >
           <p v-if="error('email')" class="error-message">{{ error('email') }}</p>
         </div>
@@ -58,14 +59,14 @@ export default {
   },
   methods: {
     submit() {
-        this.sending = true
-        this.$inertia.post(this.route('password.email'), {
-          email: this.form.email,
-        })
-        .then((response) => {
-          this.sending = false;
-          this.form.email = '';
-        })
+      this.sending = true
+      this.$inertia.post(this.route('password.email'), {
+        email: this.form.email,
+      })
+      .then((response) => {
+        this.sending = false;
+        this.form.email = '';
+      })
     },
   }
 }
