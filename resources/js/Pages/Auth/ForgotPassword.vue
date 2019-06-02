@@ -2,10 +2,14 @@
   <centered>
     <form @submit.prevent="submit">
       <header>
-        <h2>Sign In</h2>
+        <h2 v-if="status">Success!</h2>
+        <h2 v-else>Forgot Your Password?</h2>
       </header>
       <section>
-        <div class="mb-4">
+        <div class="my-2" v-if="status">
+          {{ status }}
+        </div>
+        <div class="mb-4" v-else>
           <label for="email">
             E-mail
           </label>
@@ -17,25 +21,11 @@
           >
           <p v-if="error('email')" class="text-red-500 text-sm">{{ error('email') }}</p>
         </div>
-        <div class="mb-6">
-          <label for="password">
-            Password
-          </label>
-          <input
-            id="password"
-            type="password"
-            v-model="form.password"
-            :class="error('password') ? 'error' : ''"
-            @keydown.enter="submit"
-          >
-          <p v-if="error('password')" class="text-red-500 text-sm">{{ error('password') }}</p>
-        </div>
       </section>
-      <footer>
-        <div class="flex items-center justify-between">
-          <inertia-link :href="route('password.request')" class="inline-block align-baseline font-bold text-sm text-gray-600 hover:text-gray-800">Forgot Password?</inertia-link>
+      <footer v-if="!status">
+        <div class="flex items-center justify-end">
           <button type="button" class="gray" :disabled="sending" @click="submit">
-            Go
+            Send
           </button>
         </div>
       </footer>
@@ -52,24 +42,29 @@ export default {
   components: {
     centered: CenteredLayout,
   },
+  props: {
+    status: {
+      type: String,
+      default: ''
+    }
+  },
   data() {
     return {
       sending: false,
       form: {
         email: '',
-        password: '',
       }
     }
   },
   methods: {
     submit() {
         this.sending = true
-        this.$inertia.post(this.route('login'), {
+        this.$inertia.post(this.route('password.email'), {
           email: this.form.email,
-          password: this.form.password,
         })
         .then((response) => {
-          this.sending = false
+          this.sending = false;
+          this.form.email = '';
         })
     },
   }
