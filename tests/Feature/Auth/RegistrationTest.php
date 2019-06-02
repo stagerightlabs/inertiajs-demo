@@ -19,7 +19,7 @@ class RegisterTest extends TestCase
      *
      * @return void
      */
-    public function testRegisterFormDisplayed()
+    public function test_registration_form_displayed()
     {
         $response = $this->get('/register');
 
@@ -31,7 +31,7 @@ class RegisterTest extends TestCase
      *
      * @return void
      */
-    public function testRegistersAValidUser()
+    public function test_registers_valid_users()
     {
         $user = factory(User::class)->make();
 
@@ -52,7 +52,7 @@ class RegisterTest extends TestCase
      *
      * @return void
      */
-    public function testDoesNotRegisterAnInvalidUser()
+    public function test_does_not_register_invalid_users()
     {
         $user = factory(User::class)->make();
 

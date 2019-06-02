@@ -19,7 +19,7 @@ class LoginTest extends TestCase
      *
      * @return void
      */
-    public function testLoginFormDisplayed()
+    public function test_login_form_displayed()
     {
         $response = $this->get('/login');
 
@@ -31,7 +31,7 @@ class LoginTest extends TestCase
      *
      * @return void
      */
-    public function testLoginAValidUser()
+    public function test_login_valid_user()
     {
         $user = factory(User::class)->create();
 
@@ -50,7 +50,7 @@ class LoginTest extends TestCase
      *
      * @return void
      */
-    public function testDoesNotLoginAnInvalidUser()
+    public function test_does_not_log_in_an_invalid_user()
     {
         $user = factory(User::class)->create();
 
@@ -69,7 +69,7 @@ class LoginTest extends TestCase
      *
      * @return void
      */
-    public function testLogoutAnAuthenticatedUser()
+    public function test_logout_an_authenticated_user()
     {
         $user = factory(User::class)->create();
 

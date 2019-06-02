@@ -22,7 +22,7 @@ class ResetsPasswordTest extends TestCase
      *
      * @return void
      */
-    public function testDisplaysPasswordResetRequestForm()
+    public function test_display_password_reset_request_form()
     {
         $response = $this->get('password/reset');
 
@@ -34,7 +34,7 @@ class ResetsPasswordTest extends TestCase
      *
      * @return void
      */
-    public function testSendsPasswordResetEmail()
+    public function test_sends_password_reset_emails()
     {
         $user = factory(User::class)->create();
 
@@ -50,7 +50,7 @@ class ResetsPasswordTest extends TestCase
      *
      * @return void
      */
-    public function testDoesNotSendPasswordResetEmail()
+    public function test_does_not_send_password_reset_emails()
     {
         $this->doesntExpectJobs(ResetPassword::class);
 
@@ -62,7 +62,7 @@ class ResetsPasswordTest extends TestCase
      *
      * @return void
      */
-    public function testDisplaysPasswordResetForm()
+    public function test_displays_password_reset_form()
     {
         $response = $this->get('/password/reset/token');
 
@@ -74,7 +74,7 @@ class ResetsPasswordTest extends TestCase
      *
      * @return void
      */
-    public function testChangesAUsersPassword()
+    public function test_changes_a_users_passwords()
     {
         $user = factory(User::class)->create();
 
