@@ -3,15 +3,11 @@
     <header>
       <nav>
         <inertia-link href="/">
-          <h2 class="inline">
-            {{ $page.app.name }}
-          </h2>
+          {{ $page.auth.user.email }}
         </inertia-link>
-        <inertia-link href="/about">About</inertia-link>
-        <inertia-link href="/contact">Contact</inertia-link>
       </nav>
       <aside>
-        {{ $page.auth.user.email }}
+
         <a @click="logout" class="cursor-pointer">Logout</a>
       </aside>
     </header>

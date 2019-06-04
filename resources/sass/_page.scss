@@ -1,6 +1,15 @@
 main header {
-  @apply w-full bg-gray-800 flex justify-between px-2 py-4 text-gray-100;
+  @apply w-full flex justify-between px-2 py-4 text-gray-500;
+
+  a {
+    @apply border-0;
+  }
 }
+
+article header {
+  @apply w-full flex justify-between px-2 py-4 text-gray-700;
+}
+
 
 .alert {
   @apply flex justify-between bg-white px-4 py-4 rounded mb-4;

@@ -22,8 +22,17 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('passw
 Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
 Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 
-// Dashboard
-Route::get('home', 'HomeController@index')->name('home');
+// Authenticated User Routes
+Route::group(['middleware' => 'auth'], function() {
+    // Dashboard
+    Route::get('home', 'HomeController@index')->name('home');
+
+    // Lists
+    Route::post('lists', 'ToDoListController@store')->name('lists.create');
+    Route::post('lists/{hashid}', 'ToDoListController@update')->name('lists.update');
+    Route::delete('lists/{hashid}', 'ToDoListController@destroy')->name('lists.destroy');
+});
+
 
 Route::get('/', function () {
     if (Auth::user()) {

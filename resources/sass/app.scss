@@ -23,6 +23,10 @@
 // Page
 @import 'page';
 
+body {
+    @apply text-gray-700;
+}
+
 h1 {
     @apply text-3xl;
 }
