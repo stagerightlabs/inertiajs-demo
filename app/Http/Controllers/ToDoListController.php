@@ -6,29 +6,10 @@ use App\ToDoList;
 use App\Facades\Hashid;
 use Illuminate\Http\Request;
 use App\Http\Requests\ToDoListRequest;
+use App\Http\Resources\TodoListResource;
 
 class ToDoListController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -37,34 +18,26 @@ class ToDoListController extends Controller
      */
     public function store(ToDoListRequest $request)
     {
-        $list = ToDoList::create([
+        ToDoList::create([
             'name' => $request->input('name'),
             'user_id' => $request->user()->id
         ]);
 
-        return response()->json($list);
+        return redirect()->route('home');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\ToDoList  $toDoList
+     * @param  string
      * @return \Illuminate\Http\Response
      */
-    public function show(ToDoList $toDoList)
+    public function show($hashid)
     {
-        //
-    }
+        $list = TodoList::findByHashidOrFail($hashid);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ToDoList  $toDoList
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ToDoList $toDoList)
-    {
-        //
+        return Inertia::render('List')
+            ->with('todoLists', new TodoListResource($list));
     }
 
     /**
@@ -85,7 +58,7 @@ class ToDoListController extends Controller
         $list->name = $request->input('name');
         $list->save();
 
-        return response()->json($list);
+        return redirect()->route('home');
     }
 
     /**
@@ -105,6 +78,6 @@ class ToDoListController extends Controller
 
         $list->delete();
 
-        return response()->json([]);
+        return redirect()->route('home')->with('success', "List: '{$list->name}' removed.");
     }
 }

@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\User;
 use App\ToDoList;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ToDoListTest extends TestCase
@@ -17,11 +16,12 @@ class ToDoListTest extends TestCase
         $user = factory(User::class)->create();
         $this->actingAs($user);
 
-        $response = $this->post(route('lists.create'), [
+        $response = $this->followingRedirects()->post(route('lists.store'), [
             'name' => 'New List Name'
         ]);
 
-        $response->assertStatus(200);
+        $response->assertComponentIs('Home');
+        $response->assertPropCount('todoLists', 1);
         $this->assertDatabaseHas('to_do_lists', [
             'name' => 'New List Name',
             'user_id' => $user->id
@@ -33,7 +33,7 @@ class ToDoListTest extends TestCase
         $user = factory(User::class)->create();
         $this->actingAs($user);
 
-        $response = $this->post(route('lists.create'), [
+        $response = $this->post(route('lists.store'), [
             'name' => ''
         ]);
 
@@ -48,7 +48,7 @@ class ToDoListTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $response = $this->followingRedirects()->post(route('lists.create'), [
+        $response = $this->followingRedirects()->post(route('lists.store'), [
             'name' => 'New List Name'
         ]);
 
@@ -67,10 +67,12 @@ class ToDoListTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        $response = $this->post(route('lists.update', $list->hashid), [
+        $response = $this->followingRedirects()->post(route('lists.update', $list->hashid), [
             'name' => 'Updated List Name'
         ]);
 
+        $response->assertComponentIs('Home');
+        $response->assertPropCount('todoLists', 1);
         $this->assertDatabaseHas('to_do_lists', [
             'name' => 'Updated List Name',
             'user_id' => $user->id
@@ -104,8 +106,10 @@ class ToDoListTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        $response = $this->delete(route('lists.destroy', $list->hashid));
+        $response = $this->followingRedirects()->delete(route('lists.destroy', $list->hashid));
 
+        $response->assertComponentIs('Home');
+        $response->assertPropCount('todoLists', 0);
         $this->assertDatabaseMissing('to_do_lists', [
             'id' => $list->id,
         ]);

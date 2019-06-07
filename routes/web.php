@@ -28,7 +28,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('home', 'HomeController@index')->name('home');
 
     // Lists
-    Route::post('lists', 'ToDoListController@store')->name('lists.create');
+    Route::post('lists', 'ToDoListController@store')->name('lists.store');
     Route::post('lists/{hashid}', 'ToDoListController@update')->name('lists.update');
     Route::delete('lists/{hashid}', 'ToDoListController@destroy')->name('lists.destroy');
 });
