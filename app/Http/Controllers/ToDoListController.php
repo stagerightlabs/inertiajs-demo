@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ToDoList;
+use Inertia\Inertia;
 use App\Facades\Hashid;
 use Illuminate\Http\Request;
 use App\Http\Requests\ToDoListRequest;
@@ -36,8 +37,10 @@ class ToDoListController extends Controller
     {
         $list = TodoList::findByHashidOrFail($hashid);
 
+        $list->load('items');
+
         return Inertia::render('List')
-            ->with('todoLists', new TodoListResource($list));
+            ->with('todoList', new TodoListResource($list));
     }
 
     /**

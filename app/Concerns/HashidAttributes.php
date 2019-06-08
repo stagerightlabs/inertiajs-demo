@@ -26,9 +26,9 @@ trait HashidAttributes
      * @param string $hashid
      * @return Model
      */
-    public function findByHashid($hashid)
+    public static function findByHashid($hashid)
     {
-        return $this->find(Hashid::decode($hashid));
+        return self::find(Hashid::decode($hashid));
     }
 
     /**
@@ -37,8 +37,8 @@ trait HashidAttributes
      * @param string $hashid
      * @return Model
      */
-    public function findByHashidOrFail($hashid)
+    public static function findByHashidOrFail($hashid)
     {
-        return $this->findOrFail(Hashid::decode($hashid));
+        return self::findOrFail(Hashid::decode($hashid));
     }
 }

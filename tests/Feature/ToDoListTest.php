@@ -130,9 +130,4 @@ class ToDoListTest extends TestCase
             'id' => $list->id
         ]);
     }
-
-    // public function test_deleting_lists_also_removes_list_items()
-    // {
-
-    // }
 }

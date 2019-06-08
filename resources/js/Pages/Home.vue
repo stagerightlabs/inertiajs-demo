@@ -116,7 +116,7 @@ export default {
       if (this.isEditing(list)) {
         return;
       }
-      alert('click')
+      this.$inertia.visit(this.route('lists.show', list.hashid));
     },
     updateList () {
       if (!this.editing.name.length) {
