@@ -6,7 +6,7 @@ This is a simple "To Do" application that demonstrates the use of [Inertia.js](h
 
 To run this application you will need to have PHP 7.1.3+ and Node 8+ installed on your system.  You will also need Composer for PHP dependency management and NPM for Node dependency management.  This applicaiton also requires access to a database - any Laravel compatible persistence layer will work.
 
-## Installation
+### Installation
 
 Clone the repo:
 
