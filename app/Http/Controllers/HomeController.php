@@ -28,7 +28,12 @@ class HomeController extends Controller
     {
         $todoLists = $request->user()->lists;
 
-        return Inertia::render('Home')
-            ->with('todoLists', TodoListResource::collection($todoLists));
+        // dd(<TodoListResource::colle></TodoListResource::colle>ction($todoLists));
+
+        return Inertia::render('Home', [
+            'todoLists' => function() use ($todoLists) {
+                return TodoListResource::collection($todoLists);
+            },
+        ]);
     }
 }
