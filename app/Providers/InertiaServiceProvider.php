@@ -31,23 +31,29 @@ class InertiaServiceProvider extends ServiceProvider
     public function boot()
     {
         // Set up data sharing between components
-        Inertia::share(function () {
-            return [
-                'app' => [
-                    'name' => Config::get('app.name'),
-                ],
-                'auth' => [
+        Inertia::share([
+            'app' => [
+                'name' => Config::get('app.name'),
+            ],
+            'auth' => function() {
+                return [
                     'user' => Auth::user() ? [
                         'name' => Auth::user()->name,
                         'email' => Auth::user()->email,
                         'verified' => optional(Auth::user()->email_verified_at)->toAtomString(),
                     ] : null,
-                ],
-                'flash' => [
-                    'success' => Session::get('success'),
-                ],
-                'errors' => Session::get('errors') ? Session::get('errors')->getBag('default')->getMessages() : (object)[],
-            ];
-        });
+                ];
+            },
+            'flash' => [
+                'success' => function() {
+                    return Session::get('success');
+                },
+            ],
+            'errors' => function() {
+                return Session::get('errors')
+                    ? Session::get('errors')->getBag('default')->getMessages()
+                    : (object)[];
+            },
+        ]);
     }
 }

@@ -23,7 +23,8 @@
     },
     "dependencies": {
         "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-        "inertia-vue": "github:inertiajs/inertia-vue",
+        "@inertiajs/inertia": "^0.1.7",
+        "@inertiajs/inertia-vue": "^0.1.2",
         "vue-zondicons": "^0.1.10"
     }
 }
