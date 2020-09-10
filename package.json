@@ -12,14 +12,14 @@
     "devDependencies": {
         "axios": "^0.19",
         "cross-env": "^5.1",
-        "laravel-mix": "^4.0.7",
+        "laravel-mix": "^5.0.5",
         "mix-tailwindcss": "^1.0.1",
         "resolve-url-loader": "^2.3.1",
-        "sass": "^1.15.2",
+        "sass": "^1.26.10",
         "sass-loader": "^7.1.0",
-        "tailwindcss": "^1.0.2",
-        "vue": "^2.5.17",
-        "vue-template-compiler": "^2.6.10"
+        "tailwindcss": "^1.8.6",
+        "vue": "^2.6.12",
+        "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
         "@babel/plugin-syntax-dynamic-import": "^7.2.0",
