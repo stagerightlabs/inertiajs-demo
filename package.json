@@ -12,7 +12,7 @@
     "devDependencies": {
         "axios": "^0.21",
         "cross-env": "^5.1",
-        "laravel-mix": "^5.0.5",
+        "laravel-mix": "^6.0.49",
         "mix-tailwindcss": "^1.0.1",
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.26.10",
